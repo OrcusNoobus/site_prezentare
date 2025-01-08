@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ciltrade SRL</title>
+  <meta name="description" content="Ciltrade SRL - Servicii de preambalare, restaurant cu livrare și soluții tehnologice în Târgu Mureș">
+  <meta name="keywords" content="preambalare, restaurant, livrare, tehnologie, Târgu Mureș">
+  <meta name="author" content="Ciltrade SRL">
+  <title>Ciltrade SRL - Servicii Complete de Preambalare și Livrare</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
   <script src="script.js" defer></script>
@@ -91,9 +95,9 @@
             <div class="service-content">
               <h3>Servicii de Preambalare</h3>
               <p class="service-highlight">Soluții complete pentru produse alimentare</p>
-              <p>Ambalare profesională sub vid și în atmosferă modificată</p>
-              <p>Etichetare și branding personalizat</p>
-              <p>Depozitare și distribuție eficientă</p>
+              <p class="service-feature">Ambalare profesională sub vid și în atmosferă modificată</p>
+              <p class="service-feature">Etichetare și branding personalizat</p>
+              <p class="service-feature">Depozitare și distribuție eficientă</p>
             </div>
             <img 
               data-src="images/packaging.jpg" 
@@ -106,9 +110,9 @@
             <div class="service-content">
               <h3>Restaurant & Livrare</h3>
               <p class="service-highlight">Experiență culinară premium</p>
-              <p>Livrare rapidă și eficientă</p>
-              <p>Meniu variat și adaptat sezonier</p>
-              <p>Opțiuni pentru diverse regimuri alimentare</p>
+              <p class="service-feature">Livrare rapidă și eficientă</p>
+              <p class="service-feature">Meniu variat și adaptat sezonier</p>
+              <p class="service-feature">Opțiuni pentru diverse regimuri alimentare</p>
             </div>
             <img 
               data-src="images/restaurant.jpg" 
@@ -121,9 +125,9 @@
             <div class="service-content">
               <h3>Inovație Tehnologică</h3>
               <p class="service-highlight">Tehnologie pentru eficiență maximă</p>
-              <p>Soluții AI pentru optimizare</p>
-              <p>Sisteme de management integrat</p>
-              <p>Analiză avansată a datelor</p>
+              <p class="service-feature">Soluții AI pentru optimizare</p>
+              <p class="service-feature">Sisteme de management integrat</p>
+              <p class="service-feature">Analiză avansată a datelor</p>
             </div>
             <img 
               data-src="images/technology.jpg" 
@@ -138,47 +142,88 @@
     <section id="contact" class="section">
       <div class="container">
         <h2>Contact</h2>
-        <div class="content">
-          <div class="contact-info">
-            <h3>Informații de Contact</h3>
-            <div class="address">
-              <p><strong>Adresă:</strong></p>
+        <div class="contact-grid">
+          <div class="contact-card contact-info hidden">
+            <div class="icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+            </div>
+            <h3>Locație</h3>
+            <div class="contact-content">
               <p>Str. Voinicenilor nr. 108/A</p>
               <p>Târgu Mureș, România</p>
             </div>
-            <div class="contact-details">
-              <p><strong>Email:</strong></p>
+          </div>
+          
+          <div class="contact-card contact-email hidden">
+            <div class="icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <h3>Email</h3>
+            <div class="contact-content">
               <p><a href="mailto:office@preambalari.ro">office@preambalari.ro</a></p>
               <p><a href="mailto:radumircea86@gmail.com">radumircea86@gmail.com</a></p>
-              <p><strong>Telefon:</strong></p>
+            </div>
+          </div>
+          
+          <div class="contact-card contact-phone hidden">
+            <div class="icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </div>
+            <h3>Telefon</h3>
+            <div class="contact-content">
               <p><a href="tel:+40770662375">+40 770 662 375</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-card contact-details hidden">
+            <div class="icon-wrapper">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <h3>Detalii Companie</h3>
+            <div class="contact-content">
               <p><strong>CUI:</strong> RO27346260</p>
               <p><strong>Reg. Com.:</strong> J26/575/2010</p>
             </div>
           </div>
           
-          <div class="contact-form">
-            <h3>Formular de Contact</h3>
-            <form>
-              <div class="form-group">
-                <label for="name">Nume:</label>
-                <input type="text" id="name" name="name" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-              </div>
-              <div class="form-group">
-                <label for="message">Mesaj:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-              </div>
-              <button type="submit">Trimite Mesaj</button>
-            </form>
+          <div class="contact-form-wrapper hidden">
+            <div class="contact-form">
+              <h3>Trimite un Mesaj</h3>
+              <form>
+                <div class="form-group">
+                  <label for="name">Nume:</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="message">Mesaj:</label>
+                  <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit">Trimite Mesaj</button>
+              </form>
+            </div>
           </div>
           
-          <div class="map">
+          <div class="map-wrapper hidden">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.853654089048!2d24.55731531559303!3d46.76938897913796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474bb7e9f1b1f8a5%3A0x1e1b5f5f5f5f5f5f!2sStr.%20Voinicenilor%20108A%2C%20T%C3%A2rgu%20Mure%C8%99%20540046!5e0!3m2!1sen!2sro!4v1718800000000!5m2!1sen!2sro"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2732.853654089048!2d24.55731531559303!3d46.76938897913796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474bb7e9f1b1f8a5%3A0x8f1173840ebc8e3d!2sStrada%20Voinicenilor%20108A%2C%20T%C3%A2rgu%20Mure%C8%99!5e0!3m2!1sen!2sro!4v1624356789012!5m2!1sen!2sro"
               width="100%"
               height="300"
               style="border:0;"
