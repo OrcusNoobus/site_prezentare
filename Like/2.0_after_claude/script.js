@@ -4,17 +4,18 @@ const translations = {
   ro: {
     about: 'Despre noi',
     services: 'Servicii',
-    contact: 'Contact'
+    contact: 'Contact',
+    // Add more translations as needed
   },
   en: {
     about: 'About Us',
-    services: 'Services',
-    contact: 'Contact'
+    services: 'Services', 
+    contact: 'Contact',
   },
   de: {
     about: 'Über uns',
     services: 'Dienstleistungen',
-    contact: 'Kontakt'
+    contact: 'Kontakt',
   }
 };
 
@@ -58,7 +59,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Create a generic IntersectionObserver
+// Enhanced scroll animations with different effects
 const createObserver = (options = {}) => {
   return new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -72,22 +73,24 @@ const createObserver = (options = {}) => {
   }, options);
 };
 
-// Observer for basic fade-in
+// Main content fade in
 const fadeObserver = createObserver({
   threshold: 0.2
 });
 
 document.querySelectorAll('.hidden').forEach(el => fadeObserver.observe(el));
 
-// Observer for service/features slide in
+// Service features slide in with improved timing
 const slideObserver = createObserver({
   threshold: 0.1,
   rootMargin: '0px 0px -10% 0px'
 });
 
 document.querySelectorAll('.service').forEach(service => {
+  // First observe the service container
   slideObserver.observe(service);
   
+  // Then handle features with staggered animations
   const features = service.querySelectorAll('.service-feature');
   features.forEach((feature, index) => {
     feature.classList.add('slide-hidden');
@@ -97,20 +100,21 @@ document.querySelectorAll('.service').forEach(service => {
   });
 });
 
-// Service card hover effects
+// Add service card hover effects
 const serviceCards = document.querySelectorAll('.service');
 serviceCards.forEach(card => {
   card.addEventListener('mouseenter', () => {
     card.style.transform = 'scale(1.02)';
     card.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
   });
+  
   card.addEventListener('mouseleave', () => {
     card.style.transform = 'scale(1)';
     card.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
   });
 });
 
-// Enhanced image lazy loading
+// Enhanced image lazy loading with loading indicator
 const images = document.querySelectorAll('img[data-src]');
 const imgObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
@@ -119,7 +123,7 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
       const wrapper = document.createElement('div');
       wrapper.className = 'img-wrapper';
       
-      // Create loading spinner
+      // Create and add loading spinner
       const spinner = document.createElement('div');
       spinner.className = 'loading-spinner';
       img.parentNode.insertBefore(wrapper, img);
@@ -151,17 +155,20 @@ contactForm.addEventListener('submit', async (e) => {
   submitBtn.disabled = true;
   submitBtn.textContent = 'Se trimite...';
   
-  // Simulare trimitere date (înlocuiește cu logica reală dacă e cazul)
+  // Simulate form submission
   try {
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Afișează mesaj de succes
+    // Show success message
     const successMsg = document.createElement('div');
     successMsg.className = 'form-success';
     successMsg.textContent = 'Mesajul a fost trimis cu succes!';
     contactForm.appendChild(successMsg);
     
+    // Reset form
     contactForm.reset();
+    
+    // Remove success message after 3 seconds
     setTimeout(() => successMsg.remove(), 3000);
   } catch (error) {
     console.error('Form submission error:', error);
@@ -169,6 +176,7 @@ contactForm.addEventListener('submit', async (e) => {
     errorMsg.className = 'form-error';
     errorMsg.textContent = 'A apărut o eroare. Vă rugăm încercați din nou.';
     contactForm.appendChild(errorMsg);
+    
     setTimeout(() => errorMsg.remove(), 3000);
   } finally {
     submitBtn.disabled = false;

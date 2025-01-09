@@ -1,12 +1,12 @@
 :root {
-  --primary-color: #a5cd39; /* Green apple */
+  --primary-color: #8BC34A; /* Green apple */
   --secondary-color: #000000; /* Black */
   --accent-color: #4CAF50; /* Darker green */
   --text-color: #333333;
   --background-color: #ffffff;
   --light-bg: #f5f5f5;
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-family-heading: 'Manrope', 'inter';
+  --font-family-heading: 'Manrope', sans-serif;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
   --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
   --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -32,7 +32,7 @@ body {
   margin: 0 auto;
 }
 
-/* Ascundem elementele, care devin vizibile la scroll (clasa .show) */
+/* Animation classes */
 .hidden {
   opacity: 0;
   transform: translateY(20px);
@@ -44,7 +44,6 @@ body {
   transform: translateY(0);
 }
 
-/* Clasa folosită de imaginile lazy-load pentru fade-in */
 .fade-in {
   opacity: 0;
   animation: fadeIn 0.5s ease-in forwards;
@@ -56,26 +55,45 @@ body {
   }
 }
 
-/* Secțiunea în sine apare cu un alt tip de fade (fadeUp) */
-.section {
-  padding: 6rem 0;
-  animation: fadeUp 0.6s ease-out;
+/* Grid layout for text + image sections */
+.service {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+.service-content {
+  margin-top: 0;
+}
+
+.service img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.service img.loaded {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .service {
+    grid-template-columns: 1fr;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  
+  .service img {
+    height: 200px;
   }
 }
 
-/* HEADER */
+/* Header */
 header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #4169E1 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, #1557b3 100%);
   color: white;
   padding: 1.5rem 0;
   box-shadow: var(--shadow-md);
@@ -84,63 +102,7 @@ header {
   z-index: 100;
 }
 
-header h1 {
-  font-family: var(--font-family-heading);
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  position: relative;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  position: relative;
-  transition: var(--transition);
-}
-
-nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: white;
-  transition: var(--transition);
-}
-
-nav a:hover::after {
-  width: 100%;
-}
-
-.language-switcher select {
-  background-color: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  color: var(--text-color);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.language-switcher select:hover {
-  border-color: var(--primary-color);
-  box-shadow: var(--shadow-sm);
-}
-
-/* BUTON MENU MOBIL */
+/* Mobile menu button */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -205,7 +167,66 @@ nav a:hover::after {
   border: 0;
 }
 
-/* SECȚIUNI */
+header h1 {
+  font-family: var(--font-family-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: var(--transition);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: var(--transition);
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+.language-switcher select {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.language-switcher select:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Sections */
+.section {
+  padding: 6rem 0;
+}
+
 .section h2 {
   color: var(--secondary-color);
   margin-bottom: 3rem;
@@ -228,7 +249,7 @@ nav a:hover::after {
   border-radius: 2px;
 }
 
-/* DESPRE NOI & CONȚINUT SIMILAR */
+/* Content Cards */
 .company-info,
 .mission-values,
 .future-plans {
@@ -261,22 +282,72 @@ nav a:hover::after {
   opacity: 1;
 }
 
-.company-info:hover,
-.mission-values:hover,
-.future-plans:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+/* Alternating layout */
+.company-info {
+  grid-template-columns: 1fr 1fr;
 }
 
-/* Alternăm oridinea în layout pentru aspect */
+.company-info > :first-child {
+  order: 1;
+}
+
+.company-info > :last-child {
+  order: 2;
+}
+
+.mission-values {
+  grid-template-columns: 1fr 1fr;
+}
+
 .mission-values > :first-child {
   order: 2;
 }
+
 .mission-values > :last-child {
   order: 1;
 }
 
-/* VALORI */
+.future-plans {
+  grid-template-columns: 1fr 1fr;
+}
+
+.future-plans > :first-child {
+  order: 1;
+}
+
+.future-plans > :last-child {
+  order: 2;
+}
+
+.service {
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  background-color: var(--light-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.company-info:hover,
+.mission-values:hover,
+.future-plans:hover,
+.service:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.company-info h3,
+.mission-values h3,
+.future-plans h3,
+.service h3 {
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-family: var(--font-family-heading);
+  font-weight: 600;
+}
+
+/* Values List */
 .values {
   margin-top: 1.5rem;
   padding: 1.5rem;
@@ -312,40 +383,25 @@ nav a:hover::after {
   top: -0.1rem;
 }
 
-/* SERVICII */
+/* Services */
 .service {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  padding: 2rem;
   background-color: white;
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
 }
 
-.service:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+.service ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+}
+
+.service li {
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  position: relative;
 }
 
 .service-content {
-  margin-top: 0;
-}
-
-.service img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in;
-}
-
-.service img.loaded {
-  opacity: 1;
+  margin-top: 1.5rem;
 }
 
 .service-feature {
@@ -353,10 +409,9 @@ nav a:hover::after {
   padding: 0.75rem;
   background: rgba(139, 195, 74, 0.05);
   border-left: 3px solid var(--primary-color);
-  transition:
-    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 0.2s ease;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s ease;
   will-change: transform, opacity;
 }
 
@@ -372,6 +427,24 @@ nav a:hover::after {
   pointer-events: auto;
 }
 
+.service.show .service-feature {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.service-highlight {
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+  transition: none !important;
+}
+
+.service-feature:hover {
+  transform: translateX(10px);
+  background: rgba(139, 195, 74, 0.1);
+}
+
 .service-highlight {
   font-weight: 600;
   color: var(--primary-color);
@@ -381,7 +454,7 @@ nav a:hover::after {
   font-size: 1.1rem;
 }
 
-/* CONTACT */
+/* Contact Section */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -436,6 +509,10 @@ nav a:hover::after {
 
 .contact-content {
   margin-top: 1rem;
+}
+
+.contact-content p {
+  margin-bottom: 0.5rem;
 }
 
 .contact-content a {
@@ -509,7 +586,7 @@ nav a:hover::after {
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.15);
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
   outline: none;
 }
 
@@ -530,40 +607,19 @@ button[type="submit"]:hover {
   box-shadow: var(--shadow-md);
 }
 
-/* Mesaje de eroare sau succes la formular */
-.form-success,
-.form-error {
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: 8px;
+/* Footer */
+footer {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 3rem 0;
   text-align: center;
-  animation: slideIn 0.3s ease-out;
 }
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+footer p {
+  opacity: 0.8;
 }
 
-.form-success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.form-error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-
-/* LAZY LOAD SPINNER */
+/* Image loading styles */
 .img-wrapper {
   position: relative;
   width: 100%;
@@ -588,7 +644,40 @@ button[type="submit"]:hover {
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* RESPONSIVE */
+/* Form feedback messages */
+.form-success,
+.form-error {
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  animation: slideIn 0.3s ease-out;
+}
+
+.form-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.form-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .section {
     padding: 4rem 0;
@@ -622,6 +711,14 @@ button[type="submit"]:hover {
     gap: 2rem;
   }
   
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .map {
+    height: 300px;
+  }
+  
   .company-info,
   .mission-values,
   .future-plans,
@@ -634,8 +731,20 @@ button[type="submit"]:hover {
   .future-plans > * {
     order: 0;
   }
-  
-  .service img {
-    height: 200px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  animation: fadeIn 0.6s ease-out;
 }
