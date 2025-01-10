@@ -150,12 +150,11 @@ contactForm.addEventListener('submit', async (e) => {
   const originalText = submitBtn.textContent;
   submitBtn.disabled = true;
   submitBtn.textContent = 'Se trimite...';
-  
-  // Simulare trimitere date (înlocuiește cu logica reală dacă e cazul)
+
   try {
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Afișează mesaj de succes
+
+    // Show success message
     const successMsg = document.createElement('div');
     successMsg.className = 'form-success';
     successMsg.textContent = 'Mesajul a fost trimis cu succes!';
