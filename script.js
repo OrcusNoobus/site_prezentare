@@ -1,4 +1,24 @@
-// Language switcher functionality
+// Scroll to Top functionality
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+const handleScroll = () => {
+  if (window.scrollY > 300) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+};
+
+scrollToTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+window.addEventListener('scroll', handleScroll);
+
+// Language switcher functionality with improved accessibility
 const languageSelect = document.getElementById('language-select');
 const translations = {
   ro: {
@@ -28,11 +48,14 @@ languageSelect.addEventListener('change', (e) => {
   document.querySelector('a[href="#contact"]').textContent = translations[lang].contact;
 });
 
-// Mobile menu toggle
+// Enhanced mobile menu with accessibility
 const createMobileMenu = () => {
+  const header = document.querySelector('header');
   const nav = document.querySelector('nav');
   const menuButton = document.createElement('button');
   menuButton.className = 'mobile-menu-btn';
+  menuButton.setAttribute('aria-label', 'Toggle Navigation Menu');
+  menuButton.setAttribute('aria-expanded', 'false');
   menuButton.innerHTML = `
     <span class="menu-icon"></span>
     <span class="sr-only">Toggle Menu</span>
@@ -41,24 +64,51 @@ const createMobileMenu = () => {
   nav.parentNode.insertBefore(menuButton, nav);
   
   menuButton.addEventListener('click', () => {
+    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', !isExpanded);
     nav.classList.toggle('active');
     menuButton.classList.toggle('active');
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!header.contains(e.target) && nav.classList.contains('active')) {
+      nav.classList.remove('active');
+      menuButton.classList.remove('active');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close menu when pressing Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+      nav.classList.remove('active');
+      menuButton.classList.remove('active');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }
   });
 };
 
 createMobileMenu();
 
-// Add smooth scroll behavior
+// Enhanced smooth scroll behavior with focus management
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: 'smooth'
+      });
+      targetElement.setAttribute('tabindex', '-1');
+      targetElement.focus({ preventScroll: true });
+    }
   });
 });
 
-// Create a generic IntersectionObserver
+// Enhanced IntersectionObserver with better performance
 const createObserver = (options = {}) => {
   return new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -72,17 +122,18 @@ const createObserver = (options = {}) => {
   }, options);
 };
 
-// Observer for basic fade-in
+// Optimized observers with better thresholds
 const fadeObserver = createObserver({
-  threshold: 0.2
+  threshold: 0.1,
+  rootMargin: '50px'
 });
 
 document.querySelectorAll('.hidden').forEach(el => fadeObserver.observe(el));
 
-// Observer for service/features slide in
+// Enhanced slide observer with smoother animations
 const slideObserver = createObserver({
-  threshold: 0.1,
-  rootMargin: '0px 0px -10% 0px'
+  threshold: [0, 0.1, 0.2],
+  rootMargin: '0px 0px -5% 0px'
 });
 
 document.querySelectorAll('.service').forEach(service => {
@@ -97,7 +148,7 @@ document.querySelectorAll('.service').forEach(service => {
   });
 });
 
-// Service card hover effects
+// Enhanced service card interactions
 const serviceCards = document.querySelectorAll('.service');
 serviceCards.forEach(card => {
   card.addEventListener('mouseenter', () => {
@@ -110,7 +161,7 @@ serviceCards.forEach(card => {
   });
 });
 
-// Enhanced image lazy loading
+// Optimized image lazy loading with error handling
 const images = document.querySelectorAll('img[data-src]');
 const imgObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
@@ -126,13 +177,32 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
       wrapper.appendChild(img);
       wrapper.appendChild(spinner);
       
-      // Load image
+      // Enhanced image loading with error handling
       const newImg = new Image();
+      
       newImg.onload = () => {
         img.src = img.dataset.src;
         img.classList.add('fade-in');
         spinner.remove();
+        
+        // Add loaded class for additional styling
+        img.classList.add('loaded');
       };
+      
+      newImg.onerror = () => {
+        spinner.remove();
+        wrapper.innerHTML += `
+          <div class="img-error">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12" y2="16"/>
+            </svg>
+            <span>Failed to load image</span>
+          </div>
+        `;
+      };
+      
       newImg.src = img.dataset.src;
       observer.unobserve(img);
     }
