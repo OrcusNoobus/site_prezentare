@@ -141,18 +141,30 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
 
 images.forEach(img => imgObserver.observe(img));
 
-// Contact form handling
-const contactForm = document.querySelector('.contact-form form');
+// Contact form handling with reCAPTCHA
+const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const originalText = submitBtn.textContent;
+  
+  // Verifică reCAPTCHA
+  const recaptchaResponse = grecaptcha.getResponse();
+  if (!recaptchaResponse) {
+    const errorMsg = document.createElement('div');
+    errorMsg.className = 'form-error';
+    errorMsg.textContent = 'Vă rugăm să confirmați că nu sunteți robot.';
+    contactForm.appendChild(errorMsg);
+    setTimeout(() => errorMsg.remove(), 3000);
+    return;
+  }
+  
   submitBtn.disabled = true;
   submitBtn.textContent = 'Se trimite...';
   
-  // Simulare trimitere date (înlocuiește cu logica reală dacă e cazul)
   try {
+    // Simulare trimitere date (înlocuiește cu logica reală dacă e cazul)
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     // Afișează mesaj de succes
@@ -161,7 +173,9 @@ contactForm.addEventListener('submit', async (e) => {
     successMsg.textContent = 'Mesajul a fost trimis cu succes!';
     contactForm.appendChild(successMsg);
     
+    // Reset form și reCAPTCHA
     contactForm.reset();
+    grecaptcha.reset();
     setTimeout(() => successMsg.remove(), 3000);
   } catch (error) {
     console.error('Form submission error:', error);
