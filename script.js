@@ -72,7 +72,8 @@ const translations = {
     labelName: "Nume:",
     labelEmail: "Email:",
     labelMessage: "Mesaj:",
-    formSubmitBtn: "Trimite Mesaj"
+    formSubmitBtn: "Trimite Mesaj",
+    footer: "2025 Ciltrade SRL. Toate drepturile rezervate."
   },
   en: {
     // NAV
@@ -129,7 +130,8 @@ const translations = {
     labelName: "Name:",
     labelEmail: "Email:",
     labelMessage: "Message:",
-    formSubmitBtn: "Send Message"
+    formSubmitBtn: "Send Message",
+    footer: "2025 Ciltrade SRL. All rights reserved."
   },
   de: {
     // NAV
@@ -186,7 +188,9 @@ const translations = {
     labelName: "Name:",
     labelEmail: "E-Mail:",
     labelMessage: "Nachricht:",
-    formSubmitBtn: "Nachricht Senden"
+    formSubmitBtn: "Nachricht Senden",
+    //footer
+    footer: "2025 Ciltrade SRL. Alle Rechte vorbehalten."
   }
 };
 
@@ -197,13 +201,11 @@ function updateLanguage(lang) {
   document.getElementById('nav-about').textContent = translations[lang].navAbout;
   document.getElementById('nav-services').textContent = translations[lang].navServices;
   document.getElementById('nav-contact').textContent = translations[lang].navContact;
-
   document.getElementById('about-title').textContent = translations[lang].aboutTitle;
   document.getElementById('about-subtitle').textContent = translations[lang].aboutSubtitle;
   document.getElementById('about-description1').textContent = translations[lang].aboutDescription1;
   document.getElementById('about-description2').textContent = translations[lang].aboutDescription2;
   document.getElementById('about-description3').textContent = translations[lang].aboutDescription3;
-
   document.getElementById('mission-title').textContent = translations[lang].missionTitle;
   document.getElementById('mission-description').textContent = translations[lang].missionDescription;
   document.getElementById('values-title').textContent = translations[lang].valuesTitle;
@@ -212,7 +214,6 @@ function updateLanguage(lang) {
   document.getElementById('value3').textContent = translations[lang].value3;
   document.getElementById('future-plans-title').textContent = translations[lang].futurePlansTitle;
   document.getElementById('future-plans-description').textContent = translations[lang].futurePlansDescription;
-
   document.getElementById('services-title').textContent = translations[lang].servicesTitle;
   document.getElementById('service1-title').textContent = translations[lang].service1Title;
   document.getElementById('service1-highlight').textContent = translations[lang].service1Highlight;
@@ -229,7 +230,6 @@ function updateLanguage(lang) {
   document.getElementById('service3-feature1').textContent = translations[lang].service3Feature1;
   document.getElementById('service3-feature2').textContent = translations[lang].service3Feature2;
   document.getElementById('service3-feature3').textContent = translations[lang].service3Feature3;
-
   document.getElementById('contact-title').textContent = translations[lang].contactTitle;
   document.getElementById('company-details-title').textContent = translations[lang].companyDetailsTitle;
   document.getElementById('address-title').textContent = translations[lang].addressTitle;
@@ -248,6 +248,7 @@ function updateLanguage(lang) {
   document.getElementById('label-email').textContent = translations[lang].labelEmail;
   document.getElementById('label-message').textContent = translations[lang].labelMessage;
   document.getElementById('form-submit-btn').textContent = translations[lang].formSubmitBtn;
+  document.getElementById('footer').textContent = translations[lang].footer;
 }
 
 // Setăm limba inițială (RO)
@@ -379,6 +380,7 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
       img.parentNode.insertBefore(wrapper, img);
       wrapper.appendChild(img);
       wrapper.appendChild(spinner);
+
       // Enhanced image loading with error handling
       const newImg = new Image();
       newImg.onload = () => {
@@ -414,6 +416,7 @@ contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const originalText = submitBtn.textContent;
+
   // Verifică reCAPTCHA
   const recaptchaResponse = grecaptcha.getResponse();
   if (!recaptchaResponse) {
@@ -424,19 +427,24 @@ contactForm.addEventListener('submit', async (e) => {
     setTimeout(() => errorMsg.remove(), 3000);
     return;
   }
+
   submitBtn.disabled = true;
   submitBtn.textContent = 'Se trimite...';
+
   try {
     // Simulare trimitere date (înlocuiește cu logica reală dacă e cazul)
     await new Promise(resolve => setTimeout(resolve, 1500));
+
     // Afișează mesaj de succes
     const successMsg = document.createElement('div');
     successMsg.className = 'form-success';
     successMsg.textContent = 'Mesajul a fost trimis cu succes!';
     contactForm.appendChild(successMsg);
+
     // Reset form și reCAPTCHA
     contactForm.reset();
     grecaptcha.reset();
+
     setTimeout(() => successMsg.remove(), 3000);
   } catch (error) {
     console.error('Form submission error:', error);
