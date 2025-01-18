@@ -32,36 +32,33 @@ body {
   margin: 0 auto;
 }
 
-/* Ascundem elementele, care devin vizibile la scroll (clasa .show) */
+/* Ascundem elementele care vor apărea la scroll (.show le face vizibile) */
 .hidden {
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.8s ease-out;
 }
-
 .show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Clasa folosită de imaginile lazy-load pentru fade-in */
+/* Fade-in pentru imagini lazy-load */
 .fade-in {
   opacity: 0;
   animation: fadeIn 0.5s ease-in forwards;
 }
-
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
 }
 
-/* Secțiunea în sine apare cu un alt tip de fade (fadeUp) */
+/* FadeUp pentru secțiuni */
 .section {
   padding: 6rem 0;
   animation: fadeUp 0.6s ease-out;
 }
-
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -75,7 +72,7 @@ body {
 
 /* HEADER */
 header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #4169E1 100%);
+  background: linear-gradient(45deg, var(--primary-color) 0%, #4169E1 100%);
   color: white;
   padding: 1.5rem 0;
   box-shadow: var(--shadow-md);
@@ -83,7 +80,6 @@ header {
   top: 0;
   z-index: 100;
 }
-
 header h1 {
   font-family: var(--font-family-heading);
   font-size: 2rem;
@@ -91,7 +87,6 @@ header h1 {
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
 }
-
 nav ul {
   list-style: none;
   display: flex;
@@ -99,7 +94,6 @@ nav ul {
   align-items: center;
   position: relative;
 }
-
 nav a {
   color: white;
   text-decoration: none;
@@ -108,7 +102,6 @@ nav a {
   position: relative;
   transition: var(--transition);
 }
-
 nav a::after {
   content: '';
   position: absolute;
@@ -119,16 +112,14 @@ nav a::after {
   background: white;
   transition: var(--transition);
 }
-
 nav a:hover::after {
   width: 100%;
 }
 
-/* Language Selector Styling */
+/* Language Selector */
 .language-switcher {
   position: relative;
 }
-
 .language-switcher select {
   background-color: #e8f5e9;
   border: 1px solid #c5e1a5;
@@ -139,18 +130,16 @@ nav a:hover::after {
   cursor: pointer;
   transition: var(--transition);
 }
-
 .language-switcher select:hover {
   border-color: var(--primary-color);
   box-shadow: var(--shadow-sm);
 }
-
 .language-switcher select:focus {
   outline: none;
   border: 2px solid var(--accent-color);
 }
 
-/* BUTON MENU MOBIL */
+/* MOBILE MENU BUTTON */
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -158,11 +147,10 @@ nav a:hover::after {
   cursor: pointer;
   padding: 0.5rem;
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  right: 3rem;
+  top: 2rem;
   z-index: 101;
 }
-
 .menu-icon {
   display: block;
   width: 24px;
@@ -171,7 +159,6 @@ nav a:hover::after {
   position: relative;
   transition: var(--transition);
 }
-
 .menu-icon::before,
 .menu-icon::after {
   content: '';
@@ -181,29 +168,23 @@ nav a:hover::after {
   background: white;
   transition: var(--transition);
 }
-
 .menu-icon::before {
   top: -6px;
 }
-
 .menu-icon::after {
   bottom: -6px;
 }
-
 .mobile-menu-btn.active .menu-icon {
   background: transparent;
 }
-
 .mobile-menu-btn.active .menu-icon::before {
   transform: rotate(45deg);
   top: 0;
 }
-
 .mobile-menu-btn.active .menu-icon::after {
   transform: rotate(-45deg);
   bottom: 0;
 }
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -225,7 +206,6 @@ nav a:hover::after {
   text-align: center;
   position: relative;
 }
-
 .section h2::after {
   content: '';
   position: absolute;
@@ -238,7 +218,7 @@ nav a:hover::after {
   border-radius: 2px;
 }
 
-/* DESPRE NOI & CONȚINUT SIMILAR */
+/* DESPRE NOI */
 .company-info,
 .mission-values,
 .future-plans {
@@ -253,7 +233,6 @@ nav a:hover::after {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
-
 .company-info img,
 .mission-values img,
 .future-plans img {
@@ -264,54 +243,46 @@ nav a:hover::after {
   opacity: 0;
   transition: opacity 0.5s ease-in;
 }
-
 .company-info img.loaded,
 .mission-values img.loaded,
 .future-plans img.loaded {
   opacity: 1;
 }
-
 .company-info:hover,
 .mission-values:hover,
 .future-plans:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
-
-/* Alternăm ordinea pentru desktop (rămâne la fel ca înainte) */
+/* Inversăm la .mission-values pe desktop */
 .mission-values > :first-child {
   order: 2;
 }
 .mission-values > :last-child {
   order: 1;
 }
-
-/* VALORI */
+/* Valori */
 .values {
   margin-top: 1.5rem;
   padding: 1.5rem;
   background-color: white;
   border-radius: 8px;
 }
-
 .values h4 {
   color: var(--text-color);
   margin-bottom: 1rem;
   font-size: 1.2rem;
   font-weight: 500;
 }
-
 .values ul {
   list-style: none;
   padding-left: 1rem;
 }
-
 .values li {
   margin-bottom: 0.75rem;
   padding-left: 1.5rem;
   position: relative;
 }
-
 .values li::before {
   content: "•";
   color: var(--accent-color);
@@ -335,24 +306,19 @@ nav a:hover::after {
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
-
-/* For even .service items on desktop (rămâne la fel) */
 .service:nth-child(even) {
   direction: rtl;
 }
 .service:nth-child(even) .service-content {
   direction: ltr;
 }
-
 .service:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
-
 .service-content {
   margin-top: 0;
 }
-
 .service img {
   width: 100%;
   height: 300px;
@@ -361,11 +327,9 @@ nav a:hover::after {
   opacity: 0;
   transition: opacity 0.5s ease-in;
 }
-
 .service img.loaded {
   opacity: 1;
 }
-
 .service-feature {
   margin: 1rem 0;
   padding: 0.75rem;
@@ -377,19 +341,16 @@ nav a:hover::after {
     background-color 0.2s ease;
   will-change: transform, opacity;
 }
-
 .slide-hidden {
   opacity: 0;
   transform: translateX(-100px);
   pointer-events: none;
 }
-
 .service-feature.show {
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
 }
-
 .service-highlight {
   font-weight: 600;
   color: var(--primary-color);
@@ -404,7 +365,6 @@ nav a:hover::after {
   max-width: 1200px;
   margin: 3rem auto 0;
 }
-
 .contact-grid {
   display: flex;
   gap: 2rem;
@@ -422,10 +382,8 @@ nav a:hover::after {
   transform: translateX(-20px);
   position: relative;
   overflow: hidden;
-  /* Linie stânga (verde) */
   border-left: 4px solid var(--primary-color);
 }
-
 .company-details-card::after {
   content: '';
   position: absolute;
@@ -439,12 +397,10 @@ nav a:hover::after {
     transparent 100%
   );
 }
-
 .company-details-card.show {
   opacity: 1;
   transform: translateX(0);
 }
-
 .company-details-card h3 {
   font-size: 2rem;
   color: var(--primary-color);
@@ -452,43 +408,35 @@ nav a:hover::after {
   font-family: var(--font-family-heading);
   text-align: center;
 }
-
 .company-details-content {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-
 .company-info-group {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
   text-align: left;
 }
-
 .company-info-group .icon-wrapper {
   margin: 0;
   min-width: 64px;
 }
-
 .company-info-group strong {
   display: block;
   margin-bottom: 0.5rem;
   color: var(--secondary-color);
 }
-
 .company-info-group p {
   color: var(--text-color);
   margin: 0.25rem 0;
 }
-
-/* Link-uri verzi pentru email și telefon */
 .phone-link,
 .email-link {
   color: var(--primary-color);
   text-decoration: none;
 }
-
 .phone-link:hover,
 .email-link:hover {
   text-decoration: underline;
@@ -504,10 +452,8 @@ nav a:hover::after {
   opacity: 0;
   transform: translateX(20px);
   position: relative;
-  /* Linie dreapta (verde) */
   border-right: 4px solid var(--primary-color);
 }
-
 .contact-form-wrapper::before {
   content: '';
   position: absolute;
@@ -521,12 +467,10 @@ nav a:hover::after {
     transparent 100%
   );
 }
-
 .contact-form-wrapper.show {
   opacity: 1;
   transform: translateX(0);
 }
-
 .contact-form-wrapper h3 {
   font-size: 2rem;
   color: var(--primary-color);
@@ -535,6 +479,7 @@ nav a:hover::after {
   text-align: center;
 }
 
+/* Harta */
 .map-wrapper {
   grid-column: 1 / -1;
   margin-top: 4rem;
@@ -548,12 +493,10 @@ nav a:hover::after {
   margin-left: auto;
   margin-right: auto;
 }
-
 .map-wrapper.show {
   opacity: 1;
   transform: translateY(0);
 }
-
 .map-wrapper iframe {
   display: block;
   width: 100%;
@@ -561,22 +504,19 @@ nav a:hover::after {
   border: 0;
 }
 
-/* FORMULAR */
+/* FORM */
 .contact-form {
   width: 100%;
 }
-
 .form-group {
   margin-bottom: 1.5rem;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 0.75rem;
   font-weight: 500;
   color: var(--secondary-color);
 }
-
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -587,22 +527,18 @@ nav a:hover::after {
   font-size: 1rem;
   transition: var(--transition);
 }
-
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.15);
   outline: none;
 }
-
-/* reCAPTCHA în mijloc */
+/* reCAPTCHA pe mijloc */
 .recaptcha-middle {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/* => Buton și text-area aceeași lățime */
 button[type="submit"] {
   background: linear-gradient(135deg, var(--primary-color) 0%, #1557b3 100%);
   color: white;
@@ -615,13 +551,10 @@ button[type="submit"] {
   font-weight: 500;
   transition: var(--transition);
 }
-
 button[type="submit"]:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
-
-/* Mesaje de eroare sau succes la formular */
 .form-success,
 .form-error {
   padding: 1rem;
@@ -630,7 +563,6 @@ button[type="submit"]:hover {
   text-align: center;
   animation: slideIn 0.3s ease-out;
 }
-
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -641,13 +573,11 @@ button[type="submit"]:hover {
     transform: translateY(0);
   }
 }
-
 .form-success {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
-
 .form-error {
   background-color: #f8d7da;
   color: #721c24;
@@ -660,7 +590,6 @@ button[type="submit"]:hover {
   width: 100%;
   height: 300px;
 }
-
 .loading-spinner {
   position: absolute;
   top: 50%;
@@ -673,7 +602,6 @@ button[type="submit"]:hover {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
-
 @keyframes spin {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
@@ -701,45 +629,33 @@ button[type="submit"]:hover {
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 99;
 }
-
 .scroll-to-top.visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
-
 .scroll-to-top:hover {
   background: var(--accent-color);
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
-
 .scroll-to-top:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.3);
 }
 
-/* Enhanced Mobile Menu */
+/* Mobile Menu Enhancements */
 .mobile-menu-btn {
   padding: 0.8rem;
   border-radius: 8px;
   transition: background-color 0.3s ease;
 }
-
 .mobile-menu-btn:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-
 .mobile-menu-btn:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
-}
-
-/* Enhanced Form Styles */
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.15);
 }
 
 /* Enhanced Image Loading */
@@ -749,97 +665,39 @@ button[type="submit"]:hover {
   background-color: #f5f5f5;
   border-radius: 12px;
 }
-
 .img-wrapper img {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
 .img-wrapper:hover img {
   transform: scale(1.05);
 }
 
-/* MOBILE STYLING - Alternarea text / imagine sub 768px */
+/* RESPONSIVITATE - sub 768px */
 @media (max-width: 768px) {
-  /* Facem o singură coloană pentru .company-info, .mission-values, .future-plans, .service */
   .company-info,
   .mission-values,
   .future-plans,
   .service {
     grid-template-columns: 1fr;
   }
-
-  /* By default, text > imagine (order: 1, 2) */
-  .company-info > :first-child,
-  .mission-values > :first-child,
-  .future-plans > :first-child,
-  .service .service-content {
-    order: 1;
-  }
-  .company-info img,
-  .mission-values img,
-  .future-plans img,
-  .service img {
-    order: 2;
-  }
-
-  /* Alternăm pentru a doua secțiune => imagine > text */
-  .mission-values {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  /* for .mission-values, inversăm ordinea */
+  /* Inversăm ordinea pentru .mission-values pe mobil */
   .mission-values > :first-child {
-    order: 2; /* text */
+    order: 2;
   }
   .mission-values img {
-    order: 1; /* imagine */
-  }
-
-  /* Apoi, future-plans revine la text > imagine (rămâne cum e) */
-  .future-plans > :first-child {
     order: 1;
   }
-  .future-plans img {
-    order: 2;
-  }
-
-  /* La fel și la servicii: primul .service (text > img), al doilea (img > text), al treilea (text > img) etc. */
-  .service:nth-child(1) .service-content {
-    order: 1; /* text */
-  }
-  .service:nth-child(1) img {
-    order: 2; /* imagine */
-  }
-
-  .service:nth-child(2) .service-content {
-    order: 2;
-  }
-  .service:nth-child(2) img {
-    order: 1;
-  }
-
-  .service:nth-child(3) .service-content {
-    order: 1;
-  }
-  .service:nth-child(3) img {
-    order: 2;
-  }
-
-  /* Și tot așa pentru orice .service ulterior, dacă e nevoie */
-  /* Contact grid devine coloană pe mobil */
+  /* Contact Grid pe coloană */
   .contact-grid {
     flex-direction: column;
     margin-bottom: 3rem;
   }
-
   .company-details-card {
     border-radius: 12px 12px 0 0;
   }
-
   .contact-form-wrapper {
     border-radius: 0 0 12px 12px;
   }
-
   .company-details-card::after {
     top: auto;
     bottom: 0;
@@ -853,20 +711,37 @@ button[type="submit"]:hover {
       transparent 100%
     );
   }
-
   .contact-form-wrapper::before {
     display: none;
   }
-
   .map-wrapper {
     margin-top: 3rem;
   }
-
   .section {
     padding: 4rem 0;
   }
-
   .section h2 {
     font-size: 2rem;
+  }
+  /* Butonul mobil apare, iar nav-ul se ascunde */
+  .mobile-menu-btn {
+    display: block;
+  }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    background-color: #a5cd39;
+    background: linear-gradient(220deg, #4169E1 0%, #a5cd39 100%);
+    position: absolute;
+    top: 65px;
+    right: 10px;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  nav ul.active {
+    display: flex;
+  }
+  nav li {
+    margin-bottom: 1rem;
   }
 }

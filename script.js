@@ -15,7 +15,7 @@ scrollToTopBtn.addEventListener('click', () => {
 });
 window.addEventListener('scroll', handleScroll);
 
-// Language switcher translations
+// Translations
 const translations = {
   ro: {
     // NAV
@@ -186,14 +186,13 @@ const translations = {
     labelEmail: "E-Mail:",
     labelMessage: "Nachricht:",
     formSubmitBtn: "Nachricht Senden",
-    //footer
     footer: "2025 Ciltrade SRL. Alle Rechte vorbehalten."
   }
 };
 
-// Actualizare text când se schimbă limba
+// Funcție pentru actualizarea limbii
 function updateLanguage(lang) {
-  // Înlocuim textul pe baza id-urilor
+  // Actualizăm textul pe baza id-urilor
   document.getElementById('header-title').textContent = translations[lang].headerTitle;
   document.getElementById('nav-about').textContent = translations[lang].navAbout;
   document.getElementById('nav-services').textContent = translations[lang].navServices;
@@ -211,6 +210,7 @@ function updateLanguage(lang) {
   document.getElementById('value3').textContent = translations[lang].value3;
   document.getElementById('future-plans-title').textContent = translations[lang].futurePlansTitle;
   document.getElementById('future-plans-description').textContent = translations[lang].futurePlansDescription;
+
   document.getElementById('services-title').textContent = translations[lang].servicesTitle;
   document.getElementById('service1-title').textContent = translations[lang].service1Title;
   document.getElementById('service1-highlight').textContent = translations[lang].service1Highlight;
@@ -227,6 +227,7 @@ function updateLanguage(lang) {
   document.getElementById('service3-feature1').textContent = translations[lang].service3Feature1;
   document.getElementById('service3-feature2').textContent = translations[lang].service3Feature2;
   document.getElementById('service3-feature3').textContent = translations[lang].service3Feature3;
+
   document.getElementById('contact-title').textContent = translations[lang].contactTitle;
   document.getElementById('company-details-title').textContent = translations[lang].companyDetailsTitle;
   document.getElementById('address-title').textContent = translations[lang].addressTitle;
@@ -247,10 +248,10 @@ function updateLanguage(lang) {
   document.getElementById('footer').textContent = translations[lang].footer;
 }
 
-// Setăm limba inițială (RO)
+// Setați limba inițială la 'ro'
 document.documentElement.lang = 'ro';
 
-// Ascultă schimbarea limbii
+// Schimbare limbă la select
 const languageSelect = document.getElementById('language-select');
 languageSelect.addEventListener('change', (e) => {
   const lang = e.target.value;
@@ -258,7 +259,7 @@ languageSelect.addEventListener('change', (e) => {
   updateLanguage(lang);
 });
 
-// Creăm meniul mobil
+// Creare meniu mobil
 const createMobileMenu = () => {
   const header = document.querySelector('header');
   const nav = document.querySelector('nav');
@@ -271,24 +272,28 @@ const createMobileMenu = () => {
     <span class="sr-only">Toggle Menu</span>
   `;
   nav.parentNode.insertBefore(menuButton, nav);
+
+  // Afișare/ascundere meniu mobil
   menuButton.addEventListener('click', () => {
     const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
     menuButton.setAttribute('aria-expanded', !isExpanded);
-    nav.classList.toggle('active');
+    nav.querySelector('ul').classList.toggle('active');
     menuButton.classList.toggle('active');
   });
+
   // Close menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (!header.contains(e.target) && nav.classList.contains('active')) {
-      nav.classList.remove('active');
+    if (!header.contains(e.target) && nav.querySelector('ul').classList.contains('active')) {
+      nav.querySelector('ul').classList.remove('active');
       menuButton.classList.remove('active');
       menuButton.setAttribute('aria-expanded', 'false');
     }
   });
+
   // Close menu when pressing Escape
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && nav.classList.contains('active')) {
-      nav.classList.remove('active');
+    if (e.key === 'Escape' && nav.querySelector('ul').classList.contains('active')) {
+      nav.querySelector('ul').classList.remove('active');
       menuButton.classList.remove('active');
       menuButton.setAttribute('aria-expanded', 'false');
     }
@@ -296,7 +301,7 @@ const createMobileMenu = () => {
 };
 createMobileMenu();
 
-// Enhanced smooth scroll behavior with focus management
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -312,7 +317,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Enhanced IntersectionObserver with better performance
+// IntersectionObserver
 const createObserver = (options = {}) => {
   return new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -325,15 +330,12 @@ const createObserver = (options = {}) => {
     });
   }, options);
 };
-
-// Observers
 const fadeObserver = createObserver({
   threshold: 0.1,
   rootMargin: '50px'
 });
 document.querySelectorAll('.hidden').forEach(el => fadeObserver.observe(el));
 
-// Enhanced slide observer with smoother animations
 const slideObserver = createObserver({
   threshold: [0, 0.1, 0.2],
   rootMargin: '0px 0px -5% 0px'
@@ -349,7 +351,7 @@ document.querySelectorAll('.service').forEach(service => {
   });
 });
 
-// Enhanced service card interactions
+// Efect hover servicii
 const serviceCards = document.querySelectorAll('.service');
 serviceCards.forEach(card => {
   card.addEventListener('mouseenter', () => {
@@ -362,7 +364,7 @@ serviceCards.forEach(card => {
   });
 });
 
-// Optimized image lazy loading with error handling
+// Lazy loading imagini
 const images = document.querySelectorAll('img[data-src]');
 const imgObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
@@ -370,20 +372,21 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
       const img = entry.target;
       const wrapper = document.createElement('div');
       wrapper.className = 'img-wrapper';
-      // Create loading spinner
+
+      // Spinner
       const spinner = document.createElement('div');
       spinner.className = 'loading-spinner';
+
       img.parentNode.insertBefore(wrapper, img);
       wrapper.appendChild(img);
       wrapper.appendChild(spinner);
 
-      // Enhanced image loading with error handling
+      // Încarcă imaginea
       const newImg = new Image();
       newImg.onload = () => {
         img.src = img.dataset.src;
         img.classList.add('fade-in');
         spinner.remove();
-        // Add loaded class for additional styling
         img.classList.add('loaded');
       };
       newImg.onerror = () => {
@@ -406,14 +409,14 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
 });
 images.forEach(img => imgObserver.observe(img));
 
-// Contact form handling with reCAPTCHA
+// FORM + reCAPTCHA
 const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const originalText = submitBtn.textContent;
 
-  // Verifică reCAPTCHA
+  // Verificare reCAPTCHA
   const recaptchaResponse = grecaptcha.getResponse();
   if (!recaptchaResponse) {
     const errorMsg = document.createElement('div');
@@ -428,16 +431,15 @@ contactForm.addEventListener('submit', async (e) => {
   submitBtn.textContent = 'Se trimite...';
 
   try {
-    // Simulare trimitere date (înlocuiește cu logica reală dacă e cazul)
+    // Simulare trimitere date catre server
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // Afișează mesaj de succes
+    // Mesaj succes
     const successMsg = document.createElement('div');
     successMsg.className = 'form-success';
     successMsg.textContent = 'Mesajul a fost trimis cu succes!';
     contactForm.appendChild(successMsg);
 
-    // Reset form și reCAPTCHA
     contactForm.reset();
     grecaptcha.reset();
 
