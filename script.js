@@ -64,7 +64,6 @@ const translations = {
     phoneNumber: "+40 770 662 375",
     emailTitle: "Email",
     email1: "office@preambalari.ro",
-    email2: "radumircea86@gmail.com",
     legalTitle: "Detalii Juridice",
     cui: "CUI: RO27346260",
     regCom: "Reg. Com.: J26/575/2010",
@@ -122,7 +121,6 @@ const translations = {
     phoneNumber: "+40 770 662 375",
     emailTitle: "Email",
     email1: "office@preambalari.ro",
-    email2: "radumircea86@gmail.com",
     legalTitle: "Legal Details",
     cui: "VAT: RO27346260",
     regCom: "Trade Reg.: J26/575/2010",
@@ -180,7 +178,6 @@ const translations = {
     phoneNumber: "+40 770 662 375",
     emailTitle: "E-Mail",
     email1: "office@preambalari.ro",
-    email2: "radumircea86@gmail.com",
     legalTitle: "Rechtliche Details",
     cui: "USt-IdNr.: RO27346260",
     regCom: "Handelsreg.: J26/575/2010",
@@ -239,7 +236,6 @@ function updateLanguage(lang) {
   document.getElementById('phone-number').textContent = translations[lang].phoneNumber;
   document.getElementById('email-title').textContent = translations[lang].emailTitle;
   document.getElementById('email1').textContent = translations[lang].email1;
-  document.getElementById('email2').textContent = translations[lang].email2;
   document.getElementById('legal-title').textContent = translations[lang].legalTitle;
   document.getElementById('cui').textContent = translations[lang].cui;
   document.getElementById('reg-com').textContent = translations[lang].regCom;
