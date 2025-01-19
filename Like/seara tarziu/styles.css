@@ -553,22 +553,12 @@ nav a:hover::after {
   color: #666666; /* sau orice altă culoare dorești */
   margin-left: 20px; /* spațiu între checkbox și text */
   margin-bottom: 0;
-  text-align: flex;
+  text-align: center;
 }
 
 .privacy-group input {
   margin-right: 0.1rem;
   width: auto;
-}
-.privacy-group input[type="checkbox"]:hover {
-  transform: scale(1.2); /* Efect de mărire la hover */
-  transition: transform 0.3s ease;
-}
-.privacy-group input[type="checkbox"] {
-  width: 20px;  /* Mărim lățimea (implicit este ~13px) */
-  height: 20px; /* Mărim înălțimea (implicit este ~13px) */
-  cursor: pointer; /* Adăugăm cursor pointer pentru o mai bună experiență */
-  margin-right: 1px; /* Spațiu între checkbox și text */
 }
 
 button[type="submit"] {
