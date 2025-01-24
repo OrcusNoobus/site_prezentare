@@ -27,43 +27,40 @@
   <link rel="icon" type="image/png" sizes="32x32" href="Slim.png">
   <link rel="icon" type="image/png" sizes="16x16" href="Slim.png">
 
-  <!-- Preload Critical Assets -->
-  <link rel="preload" href="styles.css" as="style">
-  <link rel="preload" href="script.js" as="script">
   <!-- Preconnect for Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    rel="preload"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap"
-    as="style"
-  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <title>Ciltrade SRL - Servicii Complete de Preambalare și Livrare</title>
-  <link rel="icon" type="image/svg+xml" href="Slim.png">
-  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts (Inter & Manrope) -->
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700&display=swap"
     rel="stylesheet"
   >
 
+  <!-- Main CSS -->
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+
   <!-- reCAPTCHA -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <!-- Main JavaScript file -->
-  <script src="script.js" defer></script>
+  <title>Ciltrade SRL - Servicii Complete de Preambalare și Livrare</title>
 </head>
 <body>
-  <!-- HEADER -->
-  <header>
+  <!-- Skip Link for Accessibility -->
+  <a class="skip-link" href="#main-content">Sari la conținut</a>
+
+  <!-- HEADER (role="banner") -->
+  <header role="banner">
     <div class="container">
       <h1 id="header-title">Ciltrade SRL</h1>
-      <nav>
+      <!-- Navigation (role="navigation") -->
+      <nav role="navigation" aria-label="Main Navigation">
         <ul>
           <li><a href="#about" id="nav-about">Despre noi</a></li>
           <li><a href="#services" id="nav-services">Servicii</a></li>
           <li><a href="#contact" id="nav-contact">Contact</a></li>
           <li class="language-switcher">
+            <label for="language-select" class="sr-only">Selectează limba</label>
             <select id="language-select" aria-label="Selectează limba">
               <option value="ro" selected>Română</option>
               <option value="en">Engleză</option>
@@ -73,10 +70,11 @@
         </ul>
       </nav>
     </div>
+    <!-- Mobile menu button is injected via JavaScript -->
   </header>
 
   <!-- MAIN CONTENT -->
-  <main>
+  <main id="main-content">
     <!-- DESPRE NOI -->
     <section id="about" class="section">
       <div class="container">
@@ -96,9 +94,10 @@
                 Astăzi, ne diversificăm prin tehnologie, investind în inteligența artificială pentru a modela viitorul.
               </p>
             </div>
+            <!-- Lazy-loaded image -->
             <img
               data-src="images/about.webp"
-              alt="Despre Ciltrade SRL"
+              alt="Imagine reprezentând sediul Ciltrade SRL"
               class="hidden"
             >
           </div>
@@ -121,7 +120,7 @@
             </div>
             <img
               data-src="images/mission.webp"
-              alt="Misiunea și Valorile Noastre"
+              alt="Imagine care reprezintă valorile și misiunea Ciltrade"
               class="hidden"
             >
           </div>
@@ -136,7 +135,7 @@
             </div>
             <img
               data-src="images/future.webp"
-              alt="Planuri de Viitor"
+              alt="Imagine care ilustrează planurile de viitor ale Ciltrade"
               class="hidden"
             >
           </div>
@@ -158,9 +157,10 @@
               <p class="service-feature" id="service1-feature2">Etichetare și branding personalizat</p>
               <p class="service-feature" id="service1-feature3">Depozitare și distribuție eficientă</p>
             </div>
+            <!-- Lazy-loaded image -->
             <img
               data-src="images/packaging.gif"
-              alt="Servicii de preambalare"
+              alt="Proces de preambalare pentru produse alimentare"
               class="hidden"
             >
           </div>
@@ -174,9 +174,10 @@
               <p class="service-feature" id="service2-feature2">Meniu variat și adaptat sezonier</p>
               <p class="service-feature" id="service2-feature3">Opțiuni pentru diverse regimuri alimentare</p>
             </div>
+            <!-- Lazy-loaded image -->
             <img
               data-src="images/restaurant.webp"
-              alt="Restaurant și livrare"
+              alt="Imagine din restaurantul Ciltrade"
               class="hidden"
             >
           </div>
@@ -190,9 +191,10 @@
               <p class="service-feature" id="service3-feature2">Sisteme de management integrat</p>
               <p class="service-feature" id="service3-feature3">Arhitecturi AI avansate cu agenți personalizați</p>
             </div>
+            <!-- Lazy-loaded image -->
             <img
               data-src="images/tech.webp"
-              alt="Inovație tehnologică"
+              alt="Tehnologii avansate utilizate de Ciltrade"
               class="hidden"
             >
           </div>
@@ -212,6 +214,7 @@
               <div class="company-details-content">
                 <div class="company-info-group">
                   <div class="icon-wrapper">
+                    <!-- Icon: location -->
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
                       <circle cx="12" cy="9" r="2.5"/>
@@ -225,8 +228,21 @@
                 </div>
                 <div class="company-info-group">
                   <div class="icon-wrapper">
+                    <!-- Icon: phone -->
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 
+                               19.79 19.79 0 0 1-8.63-3.07 
+                               19.5 19.5 0 0 1-6-6 
+                               19.79 19.79 0 0 1-3.07-8.67
+                               A2 2 0 0 1 4.11 2h3
+                               a2 2 0 0 1 2 1.72 
+                               12.84 12.84 0 0 0 .7 2.81
+                               2 2 0 0 1-.45 2.11
+                               L8.09 9.91a16 16 0 0 0 6 6
+                               l1.27-1.27a2 2 0 0 1 2.11-.45
+                               12.84 12.84 0 0 0 2.81.7
+                               A2 2 0 0 1 22 16.92z"
+                      />
                     </svg>
                   </div>
                   <div>
@@ -236,8 +252,12 @@
                 </div>
                 <div class="company-info-group">
                   <div class="icon-wrapper">
+                    <!-- Icon: email -->
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12
+                               c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6
+                               c0-1.1.9-2 2-2z"
+                      />
                       <polyline points="22,6 12,13 2,6"/>
                     </svg>
                   </div>
@@ -248,8 +268,12 @@
                 </div>
                 <div class="company-info-group">
                   <div class="icon-wrapper">
+                    <!-- Icon: file (legal details) -->
                     <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16
+                               a2 2 0 0 0 2 2h12
+                               a2 2 0 0 0 2-2V8z"
+                      />
                       <polyline points="14 2 14 8 20 8"/>
                       <line x1="16" y1="13" x2="8" y2="13"/>
                       <line x1="16" y1="17" x2="8" y2="17"/>
@@ -282,15 +306,16 @@
                     <label for="message" id="label-message">Mesaj:</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                   </div>
-                  
+
                   <!-- NEW Privacy Checkbox -->
                   <div class="form-group privacy-group">
                     <input type="checkbox" id="privacy-check" name="privacy-check" required>
                     <label for="privacy-check" id="label-privacy-check">Sunt de acord ca datele mele să fie utilizate pentru a primi un răspuns la acest mesaj.</label>
                   </div>
                   <!-- END Privacy Checkbox -->
-                  
+
                   <div class="form-group recaptcha-middle">
+                    <!-- Replace YOUR-SITE-KEY with your own reCAPTCHA site key -->
                     <div class="g-recaptcha" data-sitekey="YOUR-SITE-KEY"></div>
                   </div>
 
@@ -307,9 +332,9 @@
               width="100%"
               height="300"
               style="border:0;"
-              allowfullscreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade">
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ciltrade SRL Location">
             </iframe>
           </div>
         </div>
@@ -324,11 +349,17 @@
     </svg>
   </button>
 
-  <!-- FOOTER -->
-  <footer>
+  <!-- FOOTER (role="contentinfo") -->
+  <footer role="contentinfo">
     <div class="container">
-      <p>&copy;<a id="footer"> 2025 Ciltrade SRL. Toate drepturile rezervate.</a></p>
+      <p>
+        &copy;
+        <a id="footer">2025 Ciltrade SRL. Toate drepturile rezervate.</a>
+      </p>
     </div>
   </footer>
+
+  <!-- Main JavaScript -->
+  <script src="script.js" type="text/javascript"></script>
 </body>
 </html>

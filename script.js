@@ -1,4 +1,4 @@
-// Scroll to Top functionality
+// 1. Scroll to Top functionality
 const scrollToTopBtn = document.getElementById('scroll-to-top');
 const handleScroll = () => {
   if (window.scrollY > 300) {
@@ -15,7 +15,7 @@ scrollToTopBtn.addEventListener('click', () => {
 });
 window.addEventListener('scroll', handleScroll);
 
-// Translations
+// 2. Translations
 const translations = {
   ro: {
     // NAV
@@ -71,9 +71,7 @@ const translations = {
     labelName: "Nume:",
     labelEmail: "Email:",
     labelMessage: "Mesaj:",
-    // NEW checkbox label
     privacyCheckLabel: "Sunt de acord ca datele mele să fie utilizate pentru a primi un răspuns la acest mesaj.",
-    // The error if checkbox is not checked
     privacyCheckError: "Vă rugăm să bifați căsuța de consimțământ pentru folosirea datelor personale.",
     formSubmitBtn: "Trimite Mesaj",
     footer: "2025 Ciltrade SRL. Toate drepturile rezervate."
@@ -132,9 +130,7 @@ const translations = {
     labelName: "Name:",
     labelEmail: "Email:",
     labelMessage: "Message:",
-    // NEW checkbox label
     privacyCheckLabel: "I agree that my data will be used to receive a reply to this message.",
-    // The error if checkbox is not checked
     privacyCheckError: "Please check the consent box for personal data usage.",
     formSubmitBtn: "Send Message",
     footer: "2025 Ciltrade SRL. All rights reserved."
@@ -193,18 +189,15 @@ const translations = {
     labelName: "Name:",
     labelEmail: "E-Mail:",
     labelMessage: "Nachricht:",
-    // NEW checkbox label
     privacyCheckLabel: "Ich stimme zu, dass meine Daten verwendet werden, um eine Antwort auf diese Nachricht zu erhalten.",
-    // The error if checkbox is not checked
     privacyCheckError: "Bitte bestätigen Sie die Verwendung personenbezogener Daten.",
     formSubmitBtn: "Nachricht Senden",
     footer: "2025 Ciltrade SRL. Alle Rechte vorbehalten."
   }
 };
 
-// Funcție pentru actualizarea limbii
+// Function to update language text content
 function updateLanguage(lang) {
-  // Actualizăm textul pe baza id-urilor
   document.getElementById('header-title').textContent = translations[lang].headerTitle;
   document.getElementById('nav-about').textContent = translations[lang].navAbout;
   document.getElementById('nav-services').textContent = translations[lang].navServices;
@@ -261,10 +254,10 @@ function updateLanguage(lang) {
   document.getElementById('footer').textContent = translations[lang].footer;
 }
 
-// Setați limba inițială la 'ro'
+// Set initial language
 document.documentElement.lang = 'ro';
 
-// Schimbare limbă la select
+// Language Selector
 const languageSelect = document.getElementById('language-select');
 languageSelect.addEventListener('change', (e) => {
   const lang = e.target.value;
@@ -272,8 +265,8 @@ languageSelect.addEventListener('change', (e) => {
   updateLanguage(lang);
 });
 
-// Creare meniu mobil
-const createMobileMenu = () => {
+// 3. Mobile Menu creation
+function createMobileMenu() {
   const header = document.querySelector('header');
   const nav = document.querySelector('nav');
   const menuButton = document.createElement('button');
@@ -286,7 +279,7 @@ const createMobileMenu = () => {
   `;
   nav.parentNode.insertBefore(menuButton, nav);
 
-  // Afișare/ascundere meniu mobil
+  // Toggle mobile menu
   menuButton.addEventListener('click', () => {
     const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
     menuButton.setAttribute('aria-expanded', !isExpanded);
@@ -311,10 +304,10 @@ const createMobileMenu = () => {
       menuButton.setAttribute('aria-expanded', 'false');
     }
   });
-};
+}
 createMobileMenu();
 
-// Smooth scroll
+// 4. Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -324,14 +317,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       targetElement.scrollIntoView({
         behavior: 'smooth'
       });
+      // Set focus for accessibility
       targetElement.setAttribute('tabindex', '-1');
       targetElement.focus({ preventScroll: true });
     }
   });
 });
 
-// IntersectionObserver for fade-in
-const createObserver = (options = {}) => {
+// 5. IntersectionObserver for fade-in
+function createObserver(options = {}) {
   return new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -342,17 +336,20 @@ const createObserver = (options = {}) => {
       }
     });
   }, options);
-};
+}
+
 const fadeObserver = createObserver({
   threshold: 0.1,
   rootMargin: '50px'
 });
+
 document.querySelectorAll('.hidden').forEach(el => fadeObserver.observe(el));
 
 const slideObserver = createObserver({
   threshold: [0, 0.1, 0.2],
   rootMargin: '0px 0px -5% 0px'
 });
+
 document.querySelectorAll('.service').forEach(service => {
   slideObserver.observe(service);
   const features = service.querySelectorAll('.service-feature');
@@ -364,7 +361,7 @@ document.querySelectorAll('.service').forEach(service => {
   });
 });
 
-// Efect hover servicii
+// 6. Hover effect on service cards
 const serviceCards = document.querySelectorAll('.service');
 serviceCards.forEach(card => {
   card.addEventListener('mouseenter', () => {
@@ -377,7 +374,7 @@ serviceCards.forEach(card => {
   });
 });
 
-// Lazy loading imagini
+// 7. Lazy loading images
 const images = document.querySelectorAll('img[data-src]');
 const imgObserver = new IntersectionObserver((entries, observer) => {
   entries.forEach(entry => {
@@ -394,7 +391,7 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
       wrapper.appendChild(img);
       wrapper.appendChild(spinner);
 
-      // Încarcă imaginea
+      // Load the image
       const newImg = new Image();
       newImg.onload = () => {
         img.src = img.dataset.src;
@@ -420,16 +417,17 @@ const imgObserver = new IntersectionObserver((entries, observer) => {
     }
   });
 });
+
 images.forEach(img => imgObserver.observe(img));
 
-// FORM + reCAPTCHA
+// 8. Contact Form + reCAPTCHA
 const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const submitBtn = contactForm.querySelector('button[type="submit"]');
   const originalText = submitBtn.textContent;
-  
-  // Verificare dacă checkboxul pentru date personale e bifat
+
+  // Check privacy checkbox
   const privacyCheck = document.getElementById('privacy-check');
   const currentLang = document.documentElement.lang || 'ro';
   if (!privacyCheck.checked) {
@@ -441,14 +439,11 @@ contactForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  // Verificare reCAPTCHA
+  // reCAPTCHA verification
   const recaptchaResponse = grecaptcha.getResponse();
   if (!recaptchaResponse) {
     const errorMsg = document.createElement('div');
     errorMsg.className = 'form-error';
-    // We'll reuse the reCAPTCHA error in Romanian (or do a quick approach for all langs).
-    // For simplicity, let's just do a single message or you can add more keys in translations.
-    // We'll show it in the same language if we want to be consistent:
     if (currentLang === 'en') {
       errorMsg.textContent = 'Please confirm you are not a robot.';
     } else if (currentLang === 'de') {
@@ -465,13 +460,12 @@ contactForm.addEventListener('submit', async (e) => {
   submitBtn.textContent = 'Se trimite...';
 
   try {
-    // Simulare trimitere date catre server
+    // Simulate sending data to a server
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    // Mesaj succes
+    // Success message
     const successMsg = document.createElement('div');
     successMsg.className = 'form-success';
-    // We can localize the success message too if desired:
     if (currentLang === 'en') {
       successMsg.textContent = 'Your message has been sent successfully!';
     } else if (currentLang === 'de') {
